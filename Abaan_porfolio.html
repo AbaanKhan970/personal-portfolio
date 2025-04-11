@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abaan Khan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+	  
+	  html {
+	  scroll-behavior: smooth;
+	}
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+    }
+
+    header {
+      position: relative;
+      height: 350px;
+      overflow: hidden;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      text-align: left;
+      height: 100%;
+      padding: 20px 40px;
+    }
+
+    .header-pic {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      box-shadow: 0 0 10px rgba(0, 198, 255, 0.5);
+    }
+
+    .header-content h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .header-content p {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    section {
+      padding: 20px 40px;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      border-bottom: 2px solid #00c6ff;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .about-text {
+      opacity: 0;
+      animation: fadeSlideUp 1.2s ease-out forwards;
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .skills-grid div {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      text-align: center;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .skills-grid div:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+
+    .project {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      padding-bottom: 40px;
+    }
+
+    .project:hover {
+      box-shadow: 0 15px 40px rgba(0, 198, 255, 0.3);
+      z-index: 2;
+      transform: scale(1.025);
+    }
+
+    .projects-grid:hover .project:not(:hover) {
+      opacity: 0.6;
+      transform: scale(0.98);
+    }
+
+    .project-img, .project-img-black {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .project-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-img-black img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background-color: #000;
+      display: block;
+    }
+	
+	  .project-img-white img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background-color: white;
+      display: block;
+    }
+
+    .project h3, .project p {
+      padding: 0 20px 10px;
+    }
+
+    .experience {
+      margin-bottom: 30px;
+      padding: 30px 20px 40px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .experience:hover {
+      transform: scale(1.025);
+      box-shadow: 0 15px 40px rgba(0, 198, 255, 0.2);
+      z-index: 2;
+    }
+
+    .experience::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      background-color: white;
+      opacity: 0.18;
+      filter: grayscale(100%);
+      z-index: 0;
+    }
+
+    .experience.koc::before { background-image: url('koc_logo.png'); }
+    .experience.mcmaster::before { background-image: url('drone_logo.jpeg'); }
+    .experience.eng::before { background-image: url('eng_logo.jpg'); }
+
+    .experience > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .experience h3 {
+      font-size: 1.2rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #00c6ff;
+      margin-bottom: 5px;
+    }
+
+    .org-name {
+      float: right;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 6px #00c6ff;
+    }
+
+    .experience ul {
+      padding-left: 20px;
+    }
+
+    .card-link {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 6px 10px;
+      border-radius: 50%;
+      font-size: 18px;
+      color: #00c6ff;
+      text-decoration: none;
+      opacity: 0;
+      transition: opacity 0.3s ease, background 0.3s;
+    }
+
+    .project:hover .card-link,
+    .experience:hover .card-link {
+      opacity: 1;
+    }
+
+    .card-link:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .contact {
+      text-align: center;
+      background: #101f3d;
+      padding: 40px 20px;
+    }
+
+    .contact a {
+      color: #00c6ff;
+      text-decoration: none;
+    }
+	
+  .matrix-bg::before {
+    content: "010101001110011001100110110110010100101010011000110011";
+    position: absolute;
+    font-size: 14px;
+    color: rgba(0, 198, 255, 0.1);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    animation: matrixScroll 15s linear infinite;
+    white-space: nowrap;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  @keyframes matrixScroll {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+
+  .header-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 3px solid transparent;
+    background-image: linear-gradient(#0f2027, #203a43), linear-gradient(45deg, #00c6ff, #0072ff);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: 0 0 15px rgba(0, 198, 255, 0.5);
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    text-align: left;
+    height: 100%;
+    padding: 20px 40px;
+  }
+
+  .header-text h1 {
+    font-size: 3rem;
+    margin-bottom: 5px;
+  }
+
+  .header-text .tagline {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: #00c6ff;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  .typing-text {
+    font-size: 1rem;
+    color: #fff;
+    font-style: italic;
+    border-right: 2px solid #00c6ff;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 4s steps(40, end), caret-blink .75s step-end infinite;
+    width: 410px;
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 410px; }
+  }
+
+  @keyframes caret-blink {
+    50% { border-color: transparent; }
+  }
+  
+  @media (max-width: 1000px) {
+      .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+   }
+ }
+ 
+ /* Default SoC design lines background */
+.soc-bg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('soc_lines.png') center/cover no-repeat;
+  opacity: 0.05;
+  filter: blur(1px);
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* Active (hovered) state */
+.soc-bg.soc-hover::after {
+  opacity: 0.3;
+  filter: blur(0px) contrast(200%);
+}
+
+.top-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(15, 32, 39, 0.95);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 10px 0;
+  backdrop-filter: blur(5px);
+}
+
+.nav-link {
+  color: #00c6ff;
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  padding: 6px 10px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+.terminal-box {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #00c6ff;
+  padding: 25px 30px;
+  border-radius: 10px;
+  font-family: 'Courier New', monospace;
+  color: #00ffcc;
+  max-width: 600px;
+  margin: 30px auto 0;
+  box-shadow: 0 0 20px rgba(0, 198, 255, 0.2);
+  text-align: left;
+  line-height: 1.6;
+}
+
+.terminal-line a {
+  color: #00ffcc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.terminal-line a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+.terminal-box::after {
+  content: '_';
+  animation: blink 1s steps(2, start) infinite;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+
+</style>
+</head>
+<body>
+<nav class="top-nav">
+  <a href="#home" class="nav-link">Home</a>
+  <a href="#skills" class="nav-link">Skills</a>
+  <a href="#experience" class="nav-link">Experience</a>
+  <a href="#projects" class="nav-link">Projects</a>
+  <a href="#contact" class="nav-link">Let's Connect</a>
+</nav>
+
+  <header id="home" class="matrix-bg soc-bg">
+  <div id="particles-js"></div>
+  <div class="header-content">
+    <img src="my_pic.jpg" alt="Profile Picture" class="header-pic">
+    <div class="header-text">
+      <div class="name-hover-area">
+		  <h1 class="highlight-name">Hi, I'm Abaan</h1>
+	  </div>
+      <div class="tagline">Computer Engineering @ McMaster University</div>
+      <div class="typing-text">Engineering smarter systems from silicon to software</div>
+    </div>
+  </div>
+</header>
+
+
+  <section>
+    <h2>About Me</h2>
+    <p class="about-text">
+		I'm a third-year Computer Engineering student at McMaster University with a strong academic record (GPA: 3.9/4). My interests lie in digital systems, embedded hardware, and robotics, with hands-on experience in FPGA development, microcontrollers, real-time systems, and low-level firmware. I’ve worked on diverse projects ranging from autonomous robotics and signal processing to hardware-accelerated design and digital logic implementations. I'm driven by a passion to engineer solutions that blend deep technical understanding with creative design, aiming to build impactful technologies at the intersection of hardware and software.
+    </p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div>SystemVerilog, VHDL, FPGA</div>
+      <div>C/C++, Python, Java</div>
+      <div>React, HTML5, CSS3</div>
+      <div>Microcontrollers, Embedded C</div>
+      <div>MATLAB, Simulink</div>
+      <div>LTSpice, PSpice</div>
+      <div>Linux & Windows</div>
+    </div>
+  </section>
+
+
+<section id="experience">
+    <h2>Experience</h2>
+
+    <div class="experience koc" onclick="window.open('https://www.kockw.com', '_blank')">
+      <h3>Cyber Security Intern <span class="org-name">Kuwait Oil Company</span></h3>
+      <ul>
+        <li>Assisted in threat intelligence , risk classification and inceident response.</li>
+        <li>Used IBM X-Force and Power BI to classify threats and visualize data.</li>
+      </ul>
+      <a class="card-link" href="https://www.kockw.com" target="_blank">↗</a>
+    </div>
+
+    <div class="experience mcmaster" onclick="window.open('https://www.macdrones.ca/', '_blank')">
+      <h3>Electrical Team Member <span class="org-name">Drones Club</span></h3>
+      <ul>
+        <li>Designed a power management PCB using Altium and integrated Jetson Nano for AI.</li>
+        <li>Worked on gesture control and real-time data debugging.</li>
+      </ul>
+      <a class="card-link" href="https://www.macdrones.ca/" target="_blank">↗</a>
+    </div>
+
+    <div class="experience eng" onclick="window.open('https://www.eng.mcmaster.ca', '_blank')">
+      <h3>Teaching Assistant <span class="org-name">McMaster University</span></h3>
+      <ul>
+        <li>Guided students on transistor-level circuit design in projects.</li>
+        <li>Built a Streamlit ML tool to cluster and sort student queries.</li>
+      </ul>
+      <a class="card-link" href="https://www.eng.mcmaster.ca" target="_blank">↗</a>
+    </div>
+  </section>
+
+<section id="projects">
+  <h2>Projects</h2>
+
+  <!-- Row 1 -->
+  <div class="projects-grid project-row">
+    <div class="project" data-tilt onclick="window.open('https://github.com/AbaanKhan970/Image-Decompressor', '_blank')">
+      <div class="project-img"><img src="3dq5_pic.jpg" alt="Hardware Image Decompressor"></div>
+      <h3>Hardware Image Decompressor</h3>
+      <p>Designed an FPGA-based system to decompress images using custom FSM logic and RTL Design. Utilized UART, VGA display, RAMs and optimized SystemVerilog implementation.</p>
+      <a class="card-link" href="https://github.com/AbaanKhan970/Image-Decompressor" target="_blank">↗</a>
+    </div>
+
+    <div class="project" data-tilt onclick="window.open('https://github.com/PK2601/Voice-Rover', '_blank')">
+      <div class="project-img"><img src="rover_pic.jpg" alt="Voice Rover"></div>
+      <h3>Voice Rover</h3>
+      <p>Building a Bluetooth-enabled robot with one of the most user-intuitive iOS app for ESP32 Low-Energy Bluetooth. Implementing autonomous obstacle avoidance using LiDAR/ToF.</p>
+      <a class="card-link" href="https://github.com/PK2601/Voice-Rover" target="_blank">↗</a>
+    </div>
+
+    <div class="project" data-tilt onclick="window.open('https://github.com/AbaanKhan970/Spatial-Mapping-System', '_blank')">
+      <div class="project-img"><img src="2dx3_pic.png" alt="Spatial Mapping System"></div>
+      <h3>Spatial Mapping System</h3>
+      <p>Developed a 3D spatial scanner using a ARM Cortex-M4F microcontroller, stepper motor and ToF sensor. Used embedded C for scanning and Python for data processing and 3D visualization.</p>
+      <a class="card-link" href="https://github.com/AbaanKhan970/Spatial-Mapping-System" target="_blank">↗</a>
+    </div>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="projects-grid project-row">
+    <div class="project" data-tilt onclick="window.open('https://github.com/AbaanKhan970/real-time-fm-sdr', '_blank')">
+      <div class="project-img"><img src="radio_pic.png" alt="Real-time FM Receiver"></div>
+      <h3>Real-time FM Receiver</h3>
+      <p>Developed a real-time FM receiver using RTL-SDR and Raspberry Pi. Extracted mono, stereo, and RDS channels using Digital Signal Processing techniques . Designed multi-threaded software for real-time audio playback through Unix Pipes.</p>
+      <a class="card-link" href="https://github.com/AbaanKhan970/real-time-fm-sdr" target="_blank">↗</a>
+    </div>
+
+    <div class="project" data-tilt onclick="window.open('https://github.com/AbaanKhan970/Snake-Game', '_blank')">
+      <div class="project-img"><img src="2sh4_pic.png" alt="Classic Snake Game"></div>
+      <h3>Classic Snake Game</h3>
+      <p>Created a C++ console-based Snake game using Object Oriented Programming principles. Focused on clean logic structure and game performance.</p>
+      <a class="card-link" href="https://github.com/AbaanKhan970/Snake-Game" target="_blank">↗</a>
+    </div>
+
+    <div class="project" data-tilt onclick="window.open('https://github.com/AbaanKhan970/Pong-in-FPGA', '_blank')">
+      <div class="project-img-black"><img src="pong_pic.png" alt="Pong in FPGA"></div>
+      <h3>Pong in FPGA</h3>
+      <p>Recreated the classic Pong game on an FPGA using Verilog. Rendered visuals using VGA protocol and modular design.</p>
+      <a class="card-link" href="https://github.com/AbaanKhan970/Pong-in-FPGA" target="_blank">↗</a>
+    </div>
+  </div>
+
+  <!-- Row 3 -->
+  <div class="projects-grid project-row">
+    <div class="project" data-tilt onclick="window.open('https://github.com/AbaanKhan970/MOSFET-XOR-Gate', '_blank')">
+      <div class="project-img-white"><img src="xor_pic.png" alt="MOSFET Based XOR Gate"></div>
+      <h3>MOSFET Based XOR Gate</h3>
+      <p>Built an XOR logic gate using discrete NMOS/PMOS components demonstrating transistor-level design. Analyzed behavior and propagation through circuit simulation.</p>
+      <a class="card-link" href="https://github.com/AbaanKhan970/MOSFET-XOR-Gate" target="_blank">↗</a>
+    </div>
+  </div>
+  
+</section>
+
+<section id="contact" class="contact">
+  <h2>Let's Connect</h2>
+  <div class="terminal-box">
+    <p class="terminal-line">> connect --email <a href="mailto:abaank652@gmail.com">abaank652@gmail.com</a></p>
+    <p class="terminal-line">> connect --linkedin <a href="https://www.linkedin.com/in/abaan1" target="_blank">linkedin.com/in/abaan1</a></p>
+    <p class="terminal-line">> connect --github <a href="https://github.com/AbaanKhan970" target="_blank">github.com/AbaanKhan</a></p>
+  </div>
+</section>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+  <script>
+    VanillaTilt.init(document.querySelectorAll(".project"), {
+      max: 10,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.2,
+      scale: 1.02
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 65, density: { enable: true, value_area: 800 } },
+        color: { value: "#00c6ff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.4, random: true },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 120,
+          color: "#00c6ff",
+          opacity: 0.3,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          out_mode: "bounce"
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: false }
+        },
+        modes: {
+          repulse: { distance: 100, duration: 0.4 }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
+<script>
+  const header = document.querySelector('.soc-bg');
+  const nameArea = document.querySelector('.name-hover-area');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  function addSoCHover() {
+    header.classList.add('soc-hover');
+  }
+
+  function removeSoCHover() {
+    header.classList.remove('soc-hover');
+  }
+
+  nameArea.addEventListener('mouseenter', addSoCHover);
+  nameArea.addEventListener('mouseleave', removeSoCHover);
+
+  navLinks.forEach(link => {
+    link.addEventListener('mouseenter', addSoCHover);
+    link.addEventListener('mouseleave', removeSoCHover);
+  });
+</script>
+
+
+</body>
+</html>
